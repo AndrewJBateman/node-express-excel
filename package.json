@@ -1,33 +1,36 @@
 {
-  "name": "y",
-  "version": "1.0.0",
-  "description": "Node connect to google excel sheet",
-  "main": "index.js",
-  "scripts": {
-    "test": "test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/AndrewJBateman/node-express-excel.git"
-  },
-  "keywords": [
-    "node",
-    "excel",
-    "google",
-    "sheets"
-  ],
-  "author": "AJBateman",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/AndrewJBateman/node-express-excel/issues"
-  },
-  "homepage": "https://github.com/AndrewJBateman/node-express-excel#readme",
-  "dependencies": {
-    "ejs": "^3.1.6",
-    "express": "^4.17.1",
-    "googleapis": "^88.2.0"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.13"
-  }
+	"name": "node_express_excel",
+	"version": "1.0.0",
+	"description": "Node.js+Express+ejs connect to Google spreadsheet",
+	"main": "app.js",
+	"type": "commonjs",
+	"scripts": {
+    "dev": "nodemon app.js",
+		"test": "test"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/AndrewJBateman/node-express-excel.git"
+	},
+	"keywords": [
+		"node",
+		"excel",
+		"google",
+		"sheets"
+	],
+	"author": "AJBateman",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/AndrewJBateman/node-express-excel/issues"
+	},
+	"homepage": "https://github.com/AndrewJBateman/node-express-excel#readme",
+	"dependencies": {
+		"dotenv": "^10.0.0",
+		"ejs": "^3.1.6",
+		"express": "^4.17.1",
+		"googleapis": "^88.2.0"
+	},
+	"devDependencies": {
+		"nodemon": "^2.0.13"
+	}
 }
