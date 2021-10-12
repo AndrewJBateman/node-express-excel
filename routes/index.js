@@ -1,16 +1,17 @@
-const express = require("express");
+require("dotenv").config();
+
+const express = require('express');
+const router = express.Router();
+
 const { google } = require("googleapis");
+const spreadsheetId = process.env.SPREADSHEET_ID;
 
-const app = express();
-app.set("view engine", "ejs");
-app.use(express.urlencoded({ extended: true }));
-
-app.get("/", (req, res) => {
-	res.render("index");
+router.get('/', (req, res, next) => {
+  res.render('index', {title: 'Tasks'});
 });
 
-app.post("/", async (req, res) => {
-	const { request, name } = req.body;
+router.post('/', async (req, res, next) => {
+  const { task, name } = req.body;
 
 	const auth = new google.auth.GoogleAuth({
 		keyFile: "secrets.json",
@@ -23,36 +24,33 @@ app.post("/", async (req, res) => {
 	//Google Sheets API instance
 	const googleSheets = google.sheets({ version: "v4", auth: client });
 
-	const spreadsheetId = "1l3Pla3OBN86JKnYlJtgYDVQrPZ0nDaBxxfJOmlWHAhE";
-
 	// Get spreadsheet meta data
 	const metaData = await googleSheets.spreadsheets.get({
 		auth,
 		spreadsheetId,
 	});
-  console.log('meta data: ', metaData);
+	console.log("meta data: ", metaData);
 
-	// Read rows from spreadsheet
+	// Read existing rows from spreadsheet
 	const getRows = await googleSheets.spreadsheets.values.get({
 		auth,
 		spreadsheetId,
 		range: "TaskSheet!A:A",
 	});
-  console.log('rows: ', getRows);
 
-	// Write row(s) to spreadsheet
+	// Write row data values to spreadsheet
 	await googleSheets.spreadsheets.values.append({
 		auth,
 		spreadsheetId,
 		range: "TaskSheet!A:B",
 		valueInputOption: "USER_ENTERED",
 		resource: {
-			values: [[request, name]],
+			values: [[task, name]],
 		},
 	});
 
+  // Add timer here then redirect to home
 	res.send("Data received");
-});
+})
 
-const port = 5000;
-app.listen(port, (req, res) => console.log("connected on port ", port));
+module.exports = router;
