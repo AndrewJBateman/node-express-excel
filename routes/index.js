@@ -1,27 +1,27 @@
 require("dotenv").config();
 
-const express = require('express');
+const express = require("express");
+const { google } = require("googleapis");
 const router = express.Router();
 
-const { google } = require("googleapis");
 const spreadsheetId = process.env.SPREADSHEET_ID;
 
-router.get('/', (req, res, next) => {
-  res.render('index', {title: 'Tasks'});
+router.get("/", (req, res, next) => {
+	res.render("index", { title: "Tasks" });
 });
 
-router.post('/', async (req, res, next) => {
-  const { task, name } = req.body;
+router.post("/", async (req, res, next) => {
+	const { task, name } = req.body;
 
 	const auth = new google.auth.GoogleAuth({
 		keyFile: "secrets.json",
 		scopes: "https://www.googleapis.com/auth/spreadsheets",
 	});
 
-	// Create client auth instance
+	// Create instance of authenticated client
 	const client = await auth.getClient();
 
-	//Google Sheets API instance
+	//Google Sheets API instance,
 	const googleSheets = google.sheets({ version: "v4", auth: client });
 
 	// Get spreadsheet meta data
@@ -49,8 +49,8 @@ router.post('/', async (req, res, next) => {
 		},
 	});
 
-  // Add timer here then redirect to home
-	res.send("Data received");
-})
+	// Add timer here then redirect to home
+	res.send("Data received").redirect("/");
+});
 
 module.exports = router;

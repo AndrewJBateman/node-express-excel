@@ -1,6 +1,7 @@
 # :zap: Node Express Excel
 
 * Node.js + Express with ejs frontend connects to a Google excel sheet 'backend'
+* Work in progress
 * **Note:** to open web links in a new window use: _ctrl+click on link_
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/AndrewJBateman/node-express-excel?style=plastic)
@@ -26,7 +27,7 @@
 
 ## :camera: Screenshots
 
-![Image of tasks](./imgs/image.png)
+![Image](./imgs/sheets.png)
 
 ## :signal_strength: Technologies
 
@@ -63,8 +64,8 @@
 
 ## :clipboard: Status, Testing & To-Do List
 
-* Status: Working but incomplete
-* To-Do: Add partials: nav, table, add task page. Display excel task list on home page.
+* Status: Working but incomplete. Can add task from UI and it is added to Google sheets. No list of tasks on UI.
+* To-Do: Add partials: nav, table of tasks, add task page. Display excel task list on home page.
 
 ## :clap: Inspiration
 
